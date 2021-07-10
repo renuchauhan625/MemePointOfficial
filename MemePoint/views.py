@@ -12,6 +12,8 @@ def display_cookie(request):
     global memes
     memes = random.sample([ meme for meme in json.loads(response.text)['data']['memes'] ],5)
     print(memes)
+    memes_array = [{ 'meme_url':meme['url'],'box_count':''.join([str(i) for i in range(0,meme["box_count"])]),'name':meme['name']} for meme in memes ]
+    print("new arr",memes_array)
     memes_arr = { meme['url']:''.join([str(i) for i in range(0,meme["box_count"])]) for meme in memes }
     print(memes_arr)
     username = request.user.username
@@ -22,7 +24,7 @@ def display_cookie(request):
     
     user.save()
     consent_obj.save()
-    return render(request, 'home.html',{'cookie_value':cookie_value, 'memes_url':memes_arr, 'hide_consent': True})
+    return render(request, 'home.html',{'cookie_value':cookie_value, 'memes_url':memes_array, 'hide_consent': True})
 
 class LoginUser(LoginView):
     template_name = 'login.html'

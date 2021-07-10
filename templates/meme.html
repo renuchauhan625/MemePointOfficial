@@ -4,12 +4,16 @@
  
 {% block content %}
   	<h2>Welcome!</h2>
+  	 
   	{% if user.is_authenticated %}
      
      <table width='100%'>
      <tr>
      <td>
       Hi {{ user.username }}!
+  	</td>
+  		<td>
+  	  <a href="https://github.com/renuchauhan625" class="btn btn-primary switch" style="float: right;">About Author</a></li>
   	</td>
   	<td>
       <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></td>
@@ -19,23 +23,35 @@
       <br>
       <br>
       <br>
+      
       <img src="{{meme_url}}" />
-      <form >
-      	<table border='0'>
+      </br>
+      </br>
+      <form class="row g-3">
+ 	 
 	      {% for box_num in box_count %}
 	      	
-	      	<tr>
-	      		
-	      		<td>Box {{box_num}}: </td>
-	      		<td><input type='text' name="box{{box_num}}" /></td>
+	      		<div class="col-md-12">
 	      		 
-	      	</tr>
+		      		 <label for="box" class="form-label">Box {{box_num}}</label>
+		      		<input type='text' name="box{{box_num}}" class="form-control" id="box" />
+		      		</br>
+		        </div> 
 			
 					      	
 	      {%endfor%}
-	    </table>
-	    <input type="submit" value="Generate Meme" name="results"/>
+	     
+	      <div class="col-6">
+			  <input type="submit" class="btn btn-success" value="Generate Meme" name="results"/>
+				    
+			<button class="btn btn-primary" onclick="download('{{meme_url}}')">Download Meme</button>
+			
+		     <a href="/cookie/" class="btn btn-primary">Generate More Memes</a>
+         </div>
+	    
       </form>
+
+    
 
     {% else %}
       <a href="{% url 'login' %}" class="btn btn-primary">Login</a>

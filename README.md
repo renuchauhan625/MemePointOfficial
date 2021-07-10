@@ -24,11 +24,7 @@ password: pass
 
 5. If you love any meme template on the page then either click on the image or click on the "Click here to generate Meme" button in order to generate the customized meme image. If you wish to get the new meme templates then just click on the "Refresh Memes" button.
 
-![alt text](https://github.com/renuchauhan625/MemeGenerator/blob/develop/previews/meme-template-page.PNG?raw=true)
-
 6. Based on the number of boxes that meme supports, it will display you the input text field where you can specify the custom text and once you are done by adding all the custom text in the input text field then just click on the "Generate Meme" button. It will display you the custom meme preview. If you eagerly want to save the custom meme then click on the "Download Meme" Button. If you are running out of the ideas while working on the selected meme template then you can get the more meme templates. All you need to do is click on "Generate More Memes" button.
-
-![alt text](https://github.com/renuchauhan625/MemeGenerator/blob/develop/previews/Meme-Generate-page.PNG?raw=true)
 
 
 ## Author:

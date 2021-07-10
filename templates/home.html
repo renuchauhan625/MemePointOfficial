@@ -12,6 +12,11 @@
       Hi {{ user.username }}!
   	</td>
   	<td>
+  	 <td>
+  	  <a href="https://github.com/renuchauhan625" class="btn btn-primary switch" style="float: right;">About Author</a></li>
+  	</td>
+  	</td>
+  	<td>
       <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></td>
       </tr>
       </table>
@@ -22,14 +27,31 @@
       
       
       {% if cookie_value %}
-      
-      {% for meme_url,box_count in memes_url.items %} 
-            <a href="{% url 'meme' meme_url=meme_url box_count=box_count %}" >
-		   	 <img src="{{meme_url}}" class="rounded" width="304" height="236"> 
-		   	</a>
-		{% endfor %} 
-	
-      
+      {% for meme_info in memes_url %}
+      	
+      		<div class="card">
+ 				 <div class="card-header">
+      	
+    				<h5 >Template Name: {{meme_info.name}}</h5>
+    			 </div>
+      		     <div class="card-body">
+           			 <a href="{% url 'meme' meme_url=meme_info.meme_url box_count=meme_info.box_count %}" >
+		   	         	<img src="{{meme_info.meme_url}}" class="rounded" width="304" height="236"> 
+		         	 </a>
+		         	  <br>
+		         	    <br>
+		         	      <br>
+		         	        <br>
+		   	        <a href="{% url 'meme' meme_url=meme_info.meme_url box_count=meme_info.box_count %}" class="btn btn-primary">Click here to generate Meme</a>
+		
+					</div>
+		     </div>
+		{% endfor %}
+       	<div class="center">
+ 			<a href="." class="btn  btn-success" role="button">Refresh Memes</a>
+		</div>
+  
+       
        <div class="alert alert-success" role="alert" id="alert" style="position: fixed;bottom: 0;width: 100%;">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Cookie value!</strong> The cookie value is {{cookie_value}}!

@@ -8,6 +8,7 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
+
   
   	window.setTimeout(function() {
     $("#alert").fadeTo(500, 0).slideUp(500, function(){
@@ -31,15 +32,54 @@ function hide_consent() {
 });
 }
   </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js">
+   </script>
+   <script> 
+      function download(image_url){
+          axios({
+              url: image_url,
+              method:'GET',
+              responseType: 'blob'
+      })
+      .then((response) => {
+             const url = window.URL
+             .createObjectURL(new Blob([response.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'image.jpg');
+                    document.body.appendChild(link);
+                    link.click();
+                    history.back();
+      })
+      }
+        
+   </script>
+<style>
+.center{
+   position: fixed;
+   top: 50%;
+   right: 6%;
+   width: 115px;
+   height: 0px;
+   text-align:right;
+   z-index:9999;
+   margin-top:-15px;
+}
 
+
+
+</style>
 </head>
 <body>
+
   <div class="container">
   <header>
-    <h1>MemePoint Login</h1>
+    <h1>MemePoint</h1>
     by <a href="https://github.com/renuchauhan625">Renu Chauhan</a>
   </header>
   <hr>
+
+  </br>
   <main>
     {% block content %}
     {% endblock %}
