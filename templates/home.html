@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+ 
+{% block title %}Login{% endblock %}
+ 
+{% block content %}
+  	<h2>Welcome!</h2>
+  	{% if user.is_authenticated %}
+     
+     <table width='100%'>
+     <tr>
+     <td>
+      Hi {{ user.username }}!
+  	</td>
+  	<td>
+      <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></td>
+      </tr>
+      </table>
+      
+      <br>
+      <br>
+      <br>
+      
+      
+      {% if cookie_value %}
+      
+      {% for meme_url,box_count in memes_url.items %} 
+            <a href="{% url 'meme' meme_url=meme_url box_count=box_count %}" >
+		   	 <img src="{{meme_url}}" class="rounded" width="304" height="236"> 
+		   	</a>
+		{% endfor %} 
+	
+      
+       <div class="alert alert-success" role="alert" id="alert" style="position: fixed;bottom: 0;width: 100%;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Cookie value!</strong> The cookie value is {{cookie_value}}!
+  {% if request.user.profile.consent %}
+  	Thanks for accepting the consent!
+  {%endif%}
+</div>
+{%endif%}
+		
+		{% if not hide_consent %}
+		
+		
+         <div class="alert alert-dismissible text-center cookiealert" role="alert"  >
+  <div class="cookiealert-container" id="consent">
+    <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a href="http://cookiesandyou.com/" target="_blank">Learn more</a>
+    <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close" id="agree" name="agree" onclick="location.href={% url 'cookie'%};">
+        I agree
+    </button>
+    <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close" onclick="location.href={% url 'logout'%}">
+        I disagree
+    </button>
+  </div>
+  
+</div>
+    {%endif%}
+
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    {% endif %}
+{% endblock %}

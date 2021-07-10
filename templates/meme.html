@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+ 
+{% block title %}Login{% endblock %}
+ 
+{% block content %}
+  	<h2>Welcome!</h2>
+  	{% if user.is_authenticated %}
+     
+     <table width='100%'>
+     <tr>
+     <td>
+      Hi {{ user.username }}!
+  	</td>
+  	<td>
+      <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></td>
+      </tr>
+      </table>
+      
+      <br>
+      <br>
+      <br>
+      <img src="{{meme_url}}" />
+      <form >
+      	<table border='0'>
+	      {% for box_num in box_count %}
+	      	
+	      	<tr>
+	      		
+	      		<td>Box {{box_num}}: </td>
+	      		<td><input type='text' name="box{{box_num}}" /></td>
+	      		 
+	      	</tr>
+			
+					      	
+	      {%endfor%}
+	    </table>
+	    <input type="submit" value="Generate Meme" name="results"/>
+      </form>
+
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    {% endif %}
+{% endblock %}
